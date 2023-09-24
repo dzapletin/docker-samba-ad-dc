@@ -13,18 +13,19 @@ services:
     environment:
       - MODE=BDC
       - INTERFACES=lo enp1s0
+      - HOST_IP=10.1.4.10
 
       - PDC_IP=10.1.1.10
       - REALM=AD.EXAMPLE.COM
       - DOMAIN=EXAMPLE
       - SITE=TEST-SITE
 
-      - HOST_IP=10.1.4.10
-
       - NTP_CLIENT_SUBNET=10.1.0.0/16
 
-      - DNS_FORWARDER=10.1.1.1
+      - DNS_FORWARDER=10.1.4.1
       - DNS_CLIENT_SUBNET=10.1.0.0/16
+
+      - RSYNC_SYSVOL_ALLOW_HOSTS=10.1.0.0/16
     hostname: DC-TEST
     dns: 127.0.0.1
     dns_search: AD.EXAMPLE.COM
