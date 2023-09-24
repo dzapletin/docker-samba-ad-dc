@@ -1,0 +1,48 @@
+services:
+  samba-ad-dc:
+    image: ghcr.io/dzapletin/docker-samba-ad-dc:latest
+    network_mode: "host"
+    restart: always
+    volumes:
+      - data:/var/lib/samba
+    secrets:
+      - domain_user
+      - domain_password
+      - rsync_sysvol_user
+      - rsync_sysvol_password
+    environment:
+      - MODE=BDC
+      - INTERFACES=lo enp1s0
+
+      - PDC_IP=10.1.1.10
+      - REALM=AD.EXAMPLE.COM
+      - DOMAIN=EXAMPLE
+      - SITE=TEST-SITE
+
+      - HOST_IP=10.1.4.10
+
+      - NTP_CLIENT_SUBNET=10.1.0.0/16
+
+      - DNS_FORWARDER=10.1.1.1
+      - DNS_CLIENT_SUBNET=10.1.0.0/16
+    hostname: DC-TEST
+    dns: 127.0.0.1
+    dns_search: AD.EXAMPLE.COM
+
+secrets:
+  domain_user:
+    file: secrets/domain_user.txt
+  domain_password:
+    file: secrets/domain_password.txt
+  rsync_sysvol_user:
+    file: secrets/rsync_sysvol_user.txt
+  rsync_sysvol_password:
+    file: secrets/rsync_sysvol_password.txt
+
+volumes:
+  data:
+    driver: local
+    driver_opts:
+      type: "none"
+      o: "bind"
+      device: ${PWD}/data
