@@ -26,12 +26,12 @@ fi
 #host -t SRV _kerberos._udp.${REALM}.
 #host -t A ${HOST_FQDN}.
 
-echo "$ME: Getting replication status..."
-/usr/bin/samba-tool drs showrepl
+#echo "$ME: Getting replication status..."
+#/usr/bin/samba-tool drs showrepl
 
-if [ $MODE = 'BDC' ]; then
-    echo "$ME: Testing sysvol replication..."
-    /sync-sysvol.sh --dry-run
-fi
+#if [ $MODE = 'BDC' ]; then
+#    echo "$ME: Testing sysvol replication..."
+#    /sync-sysvol.sh --dry-run
+#fi
 
 fg %3
