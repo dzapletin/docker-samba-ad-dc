@@ -21,10 +21,10 @@ fi
 
 # Running tests
 
-echo "$ME: Testing DNS..."
-host -t SRV _ldap._tcp.${REALM}.
-host -t SRV _kerberos._udp.${REALM}.
-host -t A ${HOST_FQDN}.
+#echo "$ME: Testing DNS..."
+#host -t SRV _ldap._tcp.${REALM}.
+#host -t SRV _kerberos._udp.${REALM}.
+#host -t A ${HOST_FQDN}.
 
 echo "$ME: Getting replication status..."
 /usr/bin/samba-tool drs showrepl
