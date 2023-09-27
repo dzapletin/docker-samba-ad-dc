@@ -35,4 +35,4 @@ fi
 #    /sync-sysvol.sh --dry-run
 #fi
 
-fg %2
+fg %3
