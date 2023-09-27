@@ -9,11 +9,11 @@ set -em
 ME=$(basename "$0")
 
 # Start Chrony
-# /usr/sbin/chronyd -d -x &
+/usr/sbin/chronyd -d -x &
 # Start Bind9
 /usr/sbin/named -g &
 # Start Samba
-/usr/sbin/samba -F &
+/usr/sbin/samba -F & # --no-process-group
 # Start Rsync
 if [ $MODE = 'PDC' ]; then
     /usr/bin/rsync --no-detach &

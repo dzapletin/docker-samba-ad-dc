@@ -5,7 +5,7 @@ set -e
 export HOST_NAME=`hostname`
 
 # hosts
-#envsubst < /templates/hosts > /etc/hosts
+envsubst < /templates/hosts > /etc/hosts
 
 # chrony
 envsubst < /templates/chrony.conf > /etc/chrony/chrony.conf
@@ -13,6 +13,7 @@ envsubst < /templates/chrony.conf > /etc/chrony/chrony.conf
 envsubst < /templates/named.conf.options > /etc/bind/named.conf.options
 # Kerberos
 envsubst < /templates/krb5.conf > /etc/krb5.conf
+
 # Rsync
 if [ $MODE = 'PDC' ]; then
     echo "$(cat /run/secrets/rsync_sysvol_user):$(cat /run/secrets/rsync_sysvol_password)" > /etc/samba/rsyncd.secret

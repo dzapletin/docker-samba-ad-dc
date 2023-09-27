@@ -37,8 +37,9 @@ if [ ! "$(ls -A /var/lib/samba/private)" ]; then
     chown root:bind /var/lib/samba/bind-dns/dns.keytab
     chmod 640 /var/lib/samba/bind-dns/dns.keytab
     # Chrony
-    chown root:_chrony /var/lib/samba/ntp_signd/
-    chmod 750 /var/lib/samba/ntp_signd/
+    mkdir -p /var/lib/samba/ntp_signd
+    chown root:_chrony /var/lib/samba/ntp_signd
+    chmod 750 /var/lib/samba/ntp_signd
 
 else
     echo "$ME: Domain controller already provisioned"
