@@ -9,8 +9,8 @@ set -em
 ME=$(basename "$0")
 
 # Start Chrony
-chown -R _chrony: /run/chrony
-chmod o-rx /run/chrony
+#chown -R _chrony: /run/chrony
+#chmod o-rx /run/chrony
 rm -f /var/run/chrony/chronyd.pid
 /usr/sbin/chronyd -d -x &
 # Start Bind9
