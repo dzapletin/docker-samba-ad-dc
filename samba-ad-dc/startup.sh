@@ -1,6 +1,6 @@
 #!/bin/bash
 
-set -em
+set -m
 
 #trap "exit" INT TERM ERR # on this process exit
 #trap "exit" CHLD # on child process exit
