@@ -1,11 +1,9 @@
-FROM debian:bookworm-slim
+FROM debian:bookworm-slim as base
 
 RUN apt-get update && apt-get install --no-install-recommends --no-install-suggests -y \
     acl attr samba samba-ad-provision samba-dsdb-modules samba-vfs-modules winbind libpam-winbind libnss-winbind krb5-config krb5-user dnsutils python3-setproctitle \ 
     gettext-base chrony bind9 bind9utils rsync \
     && apt-get remove --purge --auto-remove -y
-
-COPY templates/ /templates
 
 # Bind
 RUN echo 'OPTIONS="-u bind -4"' > /etc/default/bind9 \
@@ -19,6 +17,11 @@ RUN chmod 644 /etc/krb5.conf \
 
 # Samba
 RUN rm /etc/samba/smb.conf
+
+FROM base
+
+# templates
+COPY templates/ /templates
 
 # entrypoint
 COPY --chmod=711 entrypoint/ /docker-entrypoint.d/
