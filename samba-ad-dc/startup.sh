@@ -9,7 +9,7 @@ set -em
 ME=$(basename "$0")
 
 # Start Chrony
-/usr/sbin/chronyd -d -x &
+# /usr/sbin/chronyd -d -x &
 # Start Bind9
 /usr/sbin/named -g &
 # Start Samba

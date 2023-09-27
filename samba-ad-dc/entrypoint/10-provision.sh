@@ -26,7 +26,7 @@ if [ ! "$(ls -A /var/lib/samba/private)" ]; then
         
         /usr/bin/samba-tool domain provision --server-role=dc --realm=$REALM --domain=$DOMAIN --site=$SITE \
                              --use-rfc2307 --dns-backend=BIND9_DLZ \
-                             --option="interfaces=$INTERFACES" --option="bind interfaces only=yes" \
+                             --option="interfaces=127.0.0.1 $HOST_IP" --option="bind interfaces only=yes" \
                              --adminpass=$(cat /run/secrets/domain_password)
     fi
 
