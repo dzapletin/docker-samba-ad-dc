@@ -18,6 +18,8 @@ if [ ! "$(ls -A /var/lib/samba/private)" ]; then
 
         # Sync user & group IDs between DCs from a backup idmap file
         cp /run/secrets/idmap /var/lib/samba/private/idmap.ldb
+        chown root: /var/lib/samba/private/idmap.ldb
+        chmod 600 /var/lib/samba/private/idmap.ldb
         net cache flush
         
         # Sync Sysvol to the new DC
