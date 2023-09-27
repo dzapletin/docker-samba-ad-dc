@@ -18,4 +18,7 @@ envsubst < /templates/krb5.conf > /etc/krb5.conf
 if [ $MODE = 'PDC' ]; then
     echo "$(cat /run/secrets/rsync_sysvol_user):$(cat /run/secrets/rsync_sysvol_password)" > /etc/samba/rsyncd.secret
     envsubst < /templates/rsyncd.conf > /etc/rsyncd.conf
+else
+    cp /run/secrets/rsync_sysvol_password /etc/samba/rsyncd.secret
+    chmod 400 /etc/samba/rsyncd.secret
 fi

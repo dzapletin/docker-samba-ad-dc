@@ -20,7 +20,7 @@ if [ ! "$(ls -A /var/lib/samba/private)" ]; then
         cp /run/secrets/idmap /var/lib/samba/private/idmap.ldb
         chown root: /var/lib/samba/private/idmap.ldb
         chmod 600 /var/lib/samba/private/idmap.ldb
-        net cache flush
+        /usr/bin/net cache flush
         
         # Sync Sysvol to the new DC
         /sync-sysvol.sh
