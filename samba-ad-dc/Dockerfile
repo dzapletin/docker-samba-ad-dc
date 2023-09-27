@@ -10,7 +10,7 @@ COPY templates/ /templates
 # Bind
 RUN echo 'OPTIONS="-u bind -4"' > /etc/default/bind9 \
     # # This configures dynamically loadable zones (DLZ) from AD schema
-    && echo 'dlz "AD DNS Zone" { database "dlopen /usr/lib/x86_64-linux-gnu/samba/bind9/dlz_bind9_16.so"; };' >> /etc/bind/named.conf.local
+    && echo 'dlz "AD DNS Zone" { database "dlopen /usr/lib/x86_64-linux-gnu/samba/bind9/dlz_bind9_16.so -d 3"; };' >> /etc/bind/named.conf.local
 
 # Kerberos
 # adjust permissions for bind
