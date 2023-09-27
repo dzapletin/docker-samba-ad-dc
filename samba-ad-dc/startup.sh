@@ -9,6 +9,7 @@ set -em
 ME=$(basename "$0")
 
 # Start Chrony
+rm -Rf /var/lib/samba/ntp_signd/* # purge an old socket
 /usr/sbin/chronyd -d -x &
 # Start Bind9
 /usr/sbin/named -g &
