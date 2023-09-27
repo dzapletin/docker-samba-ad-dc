@@ -8,6 +8,7 @@ services:
     secrets:
       - domain_user
       - domain_password
+      - idmap
       - rsync_sysvol_user
       - rsync_sysvol_password
     environment:
@@ -34,6 +35,8 @@ secrets:
     file: secrets/domain_user.txt
   domain_password:
     file: secrets/domain_password.txt
+  idmap:
+    file: secrets/idmap.ldb.bak
   rsync_sysvol_user:
     file: secrets/rsync_sysvol_user.txt
   rsync_sysvol_password:

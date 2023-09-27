@@ -16,6 +16,8 @@ if [ ! "$(ls -A /var/lib/samba/private)" ]; then
                              --option='idmap_ldb:use rfc2307 = yes' --option="interfaces=127.0.0.1 $HOST_IP" --option="bind interfaces only=yes" \
                              -U $(cat /run/secrets/domain_user) --password=$(cat /run/secrets/domain_password)
 
+        # Sync user & group IDs between DCs from a backup idmap file
+        cp /run/secrets/idmap /var/lib/samba/private/idmap.ldb
         net cache flush
         
         # Sync Sysvol to the new DC
