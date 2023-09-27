@@ -12,7 +12,6 @@ services:
       - rsync_sysvol_password
     environment:
       - MODE=BDC
-      - INTERFACES=lo enp1s0
       - HOST_IP=10.1.4.10
 
       - PDC_IP=10.1.1.10

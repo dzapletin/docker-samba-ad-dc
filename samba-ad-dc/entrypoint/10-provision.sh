@@ -11,7 +11,7 @@ if [ ! "$(ls -A /var/lib/samba/private)" ]; then
         
         /usr/bin/samba-tool domain join $REALM DC --server=$PDC_IP --site=$SITE \
                              --dns-backend=BIND9_DLZ \
-                             --option='idmap_ldb:use rfc2307 = yes' --option="interfaces=$INTERFACES" --option="bind interfaces only=yes" \
+                             --option='idmap_ldb:use rfc2307 = yes' --option="interfaces=127.0.0.1 $HOST_IP" --option="bind interfaces only=yes" \
                              -U $(cat /run/secrets/domain_user) --password=$(cat /run/secrets/domain_password)
 
         net cache flush
