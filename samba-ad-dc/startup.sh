@@ -1,6 +1,6 @@
 #!/bin/bash
 
-set -m
+set -em
 
 #trap "exit" INT TERM ERR # on this process exit
 #trap "exit" CHLD # on child process exit
@@ -9,14 +9,12 @@ set -m
 ME=$(basename "$0")
 
 # Start Chrony
-#chown -R _chrony: /run/chrony
-#chmod o-rx /run/chrony
 rm -f /var/run/chrony/chronyd.pid
 /usr/sbin/chronyd -d -x &
 # Start Bind9
 /usr/sbin/named -g &
 # Start Samba
-/usr/sbin/samba -F & # --no-process-group
+/usr/sbin/samba -i & # --no-process-group
 # Start Rsync
 if [ $MODE = 'PDC' ]; then
     /usr/bin/rsync --no-detach &

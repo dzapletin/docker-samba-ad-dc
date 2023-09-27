@@ -6,6 +6,8 @@ ME=$(basename "$0")
 
 if [ ! "$(ls -A /var/lib/samba/private)" ]; then
 
+    rm /etc/samba/smb.conf
+
     if [ $MODE = 'BDC' ]; then
         echo "$ME: Joining domain..."
         

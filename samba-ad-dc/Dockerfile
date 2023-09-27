@@ -16,7 +16,7 @@ RUN chmod 644 /etc/krb5.conf \
     && chown root:bind /etc/krb5.conf
 
 # Samba
-RUN rm /etc/samba/smb.conf
+VOLUME /etc/samba /var/lib/samba
 
 FROM base
 
