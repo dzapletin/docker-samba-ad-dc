@@ -1,10 +1,6 @@
 #!/bin/bash
 
-set -e
-
-#trap "exit" INT TERM ERR # on this process exit
-#trap "exit" CHLD # on child process exit
-#trap "kill 0" EXIT
+set -em
 
 ME=$(basename "$0")
 
@@ -20,10 +16,14 @@ if [ $MODE = 'PDC' ]; then
     /usr/bin/rsync --no-detach &
 fi
 
-# Start Cron
+# Start Samba
+/usr/sbin/samba -i &
+
 if [ $MODE = 'BDC' ]; then
-    /usr/sbin/cron -f &
+    let SLEEPTIME=60*10 # 10 mins
+    while sleep ${SLEEPTIME}; do
+        /sync-sysvol.sh
+    done
 fi
 
-# Start Samba
-/usr/sbin/samba -i
+fg %%
