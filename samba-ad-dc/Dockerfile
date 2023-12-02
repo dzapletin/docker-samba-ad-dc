@@ -31,3 +31,6 @@ COPY --chmod=711 sync-sysvol.sh /sync-sysvol.sh
 
 ENTRYPOINT [ "/docker-entrypoint.sh" ]
 CMD ["/startup.sh"]
+
+HEALTHCHECK --interval=15m --timeout=1s \
+    CMD /usr/bin/samba-tool drs showrepl | grep -q "[1-9][0-9]* consecutive failure(s)." && exit 1 || exit 0
