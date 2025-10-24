@@ -6,7 +6,7 @@ ME=$(basename "$0")
 
 # Start Chrony
 rm -f /var/run/chrony/chronyd.pid
-/usr/sbin/chronyd -d -x &
+/usr/sbin/chronyd -d &
 
 # Start Bind9
 /usr/sbin/named -g &

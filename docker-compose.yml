@@ -3,6 +3,8 @@ services:
     image: ghcr.io/dzapletin/docker-samba-ad-dc:latest
     network_mode: "host"
     restart: always
+    cap_add:
+      - SYS_TIME
     volumes:
       - samba_data:/var/lib/samba
       - samba_etc:/etc/samba
